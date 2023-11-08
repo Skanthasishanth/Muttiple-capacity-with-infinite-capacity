@@ -1,3 +1,4 @@
+## EXP NO : 5 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; DATE : 20.10.2023
 # Multiple server with infinite capacity - (M/M/c):(oo/FIFO)
 ## Aim :
 To find (a) average number of materials in the system (b) average number of materials in the conveyor (c) waiting time of each material in the system (d) waiting time of each material in the conveyor, if the arrival  of materials follow poisson process with the mean interval time 10 seconds, serivice time of two lathe machine follow exponential distribution with mean serice time 1 second and average service time of robot is 7seconds.
@@ -17,13 +18,61 @@ Queuing are the most frequently encountered problems in everyday life. For examp
 
 
 
-## Experiment:
+## Experiment :
+
+![exp 5a](https://github.com/Skanthasishanth/Muttiple-capacity-with-infinite-capacity/assets/118298456/228c2256-289b-41fc-8347-9d58044d997c)
 
 
-## Program
+
+![exp 5b](https://github.com/Skanthasishanth/Muttiple-capacity-with-infinite-capacity/assets/118298456/86377440-0a82-4820-b7c8-e0969988090f)
+
+
+## Program :
+```
+Developed By    : Kantha Sishanth S
+Register Number : 212222100020
+```
+```python
+import math
+arr_time=float(input("Enter the mean inter arrival time of objects from Feeder (in secs): "))
+ser_time=float(input("Enter the mean  inter service time of Lathe Machine (in secs) :  "))
+Robot_time=float(input("Enter the Additional time taken for the Robot (in secs) :  "))
+c=int(input("Number of service centre :  "))
+lam=1/arr_time
+mu=1/(ser_time+Robot_time)
+print("--------------------------------------------------------------")
+print("Multiple Server with Infinite Capacity - (M/M/c):(oo/FIFO)")
+print("--------------------------------------------------------------")
+print("The mean arrival rate per second : %0.2f "%lam)
+print("The mean service rate per second : %0.2f "%mu)
+rho=lam/(c*mu)
+sum=(lam/mu)**c*(1/(1-rho))/math.factorial(c)
+for i in range(0,c):
+    sum=sum+(lam/mu)**i/math.factorial(i)
+P0=1/sum
+if (rho<1):
+    Lq=(P0/math.factorial(c))*(1/c)*(lam/mu)**(c+1)/(1-rho)**2
+    Ls=Lq+lam/mu
+    Ws=Ls/lam
+    Wq=Lq/lam
+    print("Average number of objects in the system : %0.2f "%Ls)
+    print("Average number of objects in the conveyor :  %0.2f "%Lq)
+    print("Average waiting time of an object in the system : %0.2f secs"%Ws)
+    print("Average waiting time of an object in the conveyor : %0.2f secs"%Wq)
+    print("Probability that the system is busy : %0.2f "%(rho))
+    print("Probability that the system is empty : %0.2f "%(1-rho))
+else:
+    print("Warning! Objects Over flow will happen in the conveyor")
+print("--------------------------------------------------------------")
+```
+
 
 
 ## Output :
 
+![exp 5](https://github.com/Skanthasishanth/Muttiple-capacity-with-infinite-capacity/assets/118298456/19138a80-5758-4191-b911-a604320e315c)
+
+
 ## Result : 
+Thus, the average number of materials in the system and conveyor, waiting time of each material in the system and conveyor is found successfully.
 
